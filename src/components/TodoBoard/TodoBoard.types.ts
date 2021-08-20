@@ -1,6 +1,6 @@
-export interface TodoListProps {}
+export interface TodoBoardProps {}
 
-export interface TodoListState {
+export interface TodoBoardState {
   todos: TodoItem[];
 }
 

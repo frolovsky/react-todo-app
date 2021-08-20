@@ -1,12 +1,11 @@
 import { Component } from 'react';
+import { TodoBoardProps, TodoBoardState } from './TodoBoard.types';
+import TodoList from './TodoList/TodoList';
 import { getTodos } from '../../api/api';
-import { TodoListProps, TodoListState } from './TodoList.types';
-import TodoListItem from './TodoListItem/TodoListItem';
 import update from 'immutability-helper';
 
-
-export default class TodoList extends Component<TodoListProps, TodoListState> {
-  constructor(props: TodoListProps) {
+export default class TodoBoard extends Component<TodoBoardProps, TodoBoardState> {
+  constructor(props: TodoBoardProps) {
     super(props);
     this.state = {
       todos: [],
@@ -35,18 +34,10 @@ export default class TodoList extends Component<TodoListProps, TodoListState> {
 
   render() {
     return (
-      <div>
-        <ul>
-          {
-            this.state.todos.map(todo => {
-              return <TodoListItem
-                key={todo.id}
-                item={todo}
-                toggleComplete={this.toggleCompleteTodoItem} />
-            })
-          }
-        </ul>
-      </div>
+      <TodoList
+        todos={this.state.todos}
+        toggleCompleteTodoItem={this.toggleCompleteTodoItem}
+      />
     )
   }
 }

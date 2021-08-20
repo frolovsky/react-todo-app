@@ -7,7 +7,11 @@ export default class TodoListItem extends Component<TodoListItemProps, TodoListI
     return (
       <li>
         <span>{ item.title }</span>
-        <input type='checkbox' checked={item.completed} onChange={() => this.props.toggleComplete(item.id, item.completed)} />
+        <input
+          type='checkbox'
+          checked={item.completed}
+          onChange={() => this.props.toggleCompleteTodoItem(item.id, item.completed)}
+        />
       </li>
     )
   }
