@@ -1,12 +1,17 @@
-export interface TodoBoardProps {}
+export interface TodoBoardProps {
+  date: string;
+}
 
 export interface TodoBoardState {
-  todos: TodoItem[];
+  todos: Todos;
+}
+
+export interface Todos {
+  [key: string]: TodoItem[];
 }
 
 export interface TodoItem {
   id: number;
-  userId: number;
   title: string;
   completed: boolean;
 }

@@ -3,4 +3,6 @@ export interface NavCalendarGridProps {
   columns: number;
   items: number;
   gridHeaders: string[];
+  setDate: (date: string) => void;
+  date: string;
 }

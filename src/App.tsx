@@ -3,6 +3,7 @@ import TodoBoard from './components/TodoBoard/TodoBoard';
 import NavCalendar from './components/NavCalendar/NavCalendar';
 import styled from 'styled-components';
 import { Container } from './common/styles';
+import { useState } from 'react';
 
 const AppBlock = styled.div`
   display: grid;
@@ -10,11 +11,18 @@ const AppBlock = styled.div`
 `;
 
 function App() {
+  const [date, setDate] = useState(new Intl.DateTimeFormat('en-GB').format(new Date()));
+
   return (
     <Container>
       <AppBlock>
-        <NavCalendar />
-        <TodoBoard />
+        <NavCalendar
+          setDate={setDate}
+          date={date}
+        />
+        <TodoBoard
+          date={date}
+        />
       </AppBlock>
     </Container>
   );

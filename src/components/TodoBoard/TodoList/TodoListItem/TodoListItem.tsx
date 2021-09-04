@@ -12,6 +12,12 @@ export default class TodoListItem extends Component<TodoListItemProps, TodoListI
           checked={item.completed}
           onChange={() => this.props.toggleCompleteTodoItem(item.id, item.completed)}
         />
+        <button
+          type='button'
+          onClick={() => this.props.deleteTodo(item.id)}
+        >
+          delete
+        </button>
       </li>
     )
   }

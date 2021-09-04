@@ -1,6 +1,6 @@
 import { NavCalendarGridProps} from './NavCalendarGrid.types';
+import { APP_BORDER_RADIUS } from '../../../common/styles/_variables';
 import styled from 'styled-components';
-import { APP_BORDER_RADIUS } from '../../../common/styles/config';
 
 const CalendarBody = styled.div<{ columns: number; rows: number }>`
   display: grid;
@@ -19,6 +19,10 @@ const CalendarCell = styled.span`
   &:hover {
     background-color: #eee;
   }
+  
+  &.active {
+    background-color: #eee;
+  }
 `;
 
 const CalendarHeader = styled.div<{ columns: number }>`
@@ -28,6 +32,7 @@ const CalendarHeader = styled.div<{ columns: number }>`
   border-top: 2px solid #ccc;
   border-bottom: 2px solid #ccc;
   border-radius: ${APP_BORDER_RADIUS}px;
+  margin-bottom: 10px;
 `;
 
 const CalendarHeaderText = styled.span`
@@ -40,11 +45,27 @@ const CalendarHeaderText = styled.span`
   }
 `;
 
-const NavCalendarGrid = ({ gridHeaders, columns, rows, items }: NavCalendarGridProps) => {
+const NavCalendarGrid = ({ gridHeaders, columns, rows, items, setDate, date }: NavCalendarGridProps) => {
+  const handleClickCell = (dayNumber: number) => {
+    const date = String(new Date());
+    const dateModify = date.replace(/[0-9]{2}/, String(dayNumber));
+    setDate(new Intl.DateTimeFormat('en-GB').format(new Date(dateModify)));
+  }
+
   const getCalendarBodyItems = () => {
     const content = [];
+    const selectedDay = date.match(/\d{2}(?=\/)/);
     for (let i = 1; i <= items; i++) {
-      content.push(<CalendarCell key={i}>{i}</CalendarCell>)
+      const isActiveCell = i === Number(selectedDay);
+      content.push(
+        <CalendarCell
+          key={i}
+          onClick={() => handleClickCell(i)}
+          className={isActiveCell ? 'active' : ''}
+        >
+          {i}
+        </CalendarCell>
+      );
     }
     return content;
   };

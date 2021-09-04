@@ -2,14 +2,14 @@ import { NavCalendarProps } from './NavCalendar.types';
 import { useEffect, useState } from 'react';
 import { getDaysInMonth } from './helpers';
 import styled from 'styled-components';
-import { APP_BORDER_RADIUS } from '../../common/styles/config';
+import { APP_BORDER_RADIUS } from '../../common/styles/_variables';
 import NavCalendarGrid from './NavCalendarGrid/NavCalendarGrid';
 
 const CalendarWrapper = styled.div`
-    border: 2px solid dodgerblue;
-    border-radius: ${APP_BORDER_RADIUS}px;
-    padding: 20px;
-  `;
+  border: 2px solid dodgerblue;
+  border-radius: ${APP_BORDER_RADIUS}px;
+  padding: 20px;
+`;
 
 export default function NavCalendar (props: NavCalendarProps) {
   const [gridData, setGridData] = useState({ items: 1, rows: 1 });
@@ -30,6 +30,8 @@ export default function NavCalendar (props: NavCalendarProps) {
         columns={dayInWeek}
         items={gridData.items}
         gridHeaders={gridHeaders}
+        setDate={props.setDate}
+        date={props.date}
       />
     </CalendarWrapper>
   )

@@ -13,7 +13,9 @@ export default class TodoList extends Component<TodoListProps, TodoListState> {
               return <TodoListItem
                 key={todo.id}
                 item={todo}
-                toggleCompleteTodoItem={this.props.toggleCompleteTodoItem} />
+                toggleCompleteTodoItem={this.props.toggleCompleteTodoItem}
+                deleteTodo={this.props.deleteTodo}
+              />
             })
           }
         </ul>
