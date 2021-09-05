@@ -1,3 +1,3 @@
-export default function generateId (len = 5): string {
+export default function generateId (): string {
   return Math.random().toString(36).substring(2);
 }
