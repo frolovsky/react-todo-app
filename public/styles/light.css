@@ -1,4 +1,4 @@
 :root {
   --font-color: #000;
-  --body-bg: #fff;
+  --body-bg: linear-gradient(45deg, rgba(81,96,112,1) 0%, rgba(35,47,61,1) 100%);
 }

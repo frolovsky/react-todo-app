@@ -6,9 +6,10 @@ import { APP_BORDER_RADIUS } from '../../common/styles/_variables';
 import NavCalendarGrid from './NavCalendarGrid/NavCalendarGrid';
 
 const CalendarWrapper = styled.div`
-  border: 2px solid dodgerblue;
+  box-shadow: 0 0 4px rgba(255, 255, 255, .3);
   border-radius: ${APP_BORDER_RADIUS}px;
   padding: 20px;
+  background-color: #fff;
 `;
 
 export default function NavCalendar (props: NavCalendarProps) {

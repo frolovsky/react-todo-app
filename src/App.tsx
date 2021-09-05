@@ -8,6 +8,7 @@ import { useState } from 'react';
 const AppBlock = styled.div`
   display: grid;
   grid-template-columns: 400px 1fr;
+  padding-top: 100px;
 `;
 
 function App() {

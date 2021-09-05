@@ -1,8 +1,13 @@
-import { Component } from 'react';
+import { Component, FormEvent } from 'react';
 import { TodoBoardProps, TodoBoardState, TodoItem } from './TodoBoard.types';
 import TodoList from './TodoList/TodoList';
 import { getTodos } from '../../api/api';
 import update from 'immutability-helper';
+import styled from 'styled-components';
+
+const TodoBoardWrapper = styled.div`
+  margin-left: 50px;
+`;
 
 export default class TodoBoard extends Component<TodoBoardProps, TodoBoardState> {
   constructor(props: TodoBoardProps) {
@@ -25,7 +30,7 @@ export default class TodoBoard extends Component<TodoBoardProps, TodoBoardState>
     });
   }
 
-  toggleCompleteTodoItem(id: number, value: boolean) {
+  toggleCompleteTodoItem(e: FormEvent<HTMLElement>, id: number, value: boolean) {
     const todoIndex = this.state.todos[this.props.date].findIndex(todo => todo.id === id);
     this.setState({
       todos: update(
@@ -50,7 +55,8 @@ export default class TodoBoard extends Component<TodoBoardProps, TodoBoardState>
     });
   }
 
-  deleteTodo(itemId: number) {
+  deleteTodo(e: FormEvent<HTMLElement>, itemId: number) {
+    e.stopPropagation();
     const index = this.state.todos[this.props.date].findIndex(todo => todo.id === itemId);
     if (index !== -1) {
       this.setState({
@@ -77,7 +83,7 @@ export default class TodoBoard extends Component<TodoBoardProps, TodoBoardState>
     const todosKeysLength = Object.keys(this.state.todos).length;
     const todos = this.state.todos[this.props.date];
     return (
-      <div>
+      <TodoBoardWrapper>
         { todosKeysLength &&
           <TodoList
             todos={todos ? todos : []}
@@ -86,7 +92,7 @@ export default class TodoBoard extends Component<TodoBoardProps, TodoBoardState>
             deleteTodo={this.deleteTodo}
           />
       }
-      </div>
+      </TodoBoardWrapper>
     )
   }
 }

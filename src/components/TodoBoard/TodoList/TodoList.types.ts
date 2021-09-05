@@ -1,10 +1,11 @@
 import { TodoItem } from '../TodoBoard.types';
+import { FormEvent } from 'react';
 
 export interface TodoListProps {
   todos: TodoItem[];
-  toggleCompleteTodoItem: (id: number, value: boolean) => void;
+  toggleCompleteTodoItem: (e: FormEvent<HTMLElement>, id: number, value: boolean) => void;
   addTodo: (todo: TodoItem) => void;
-  deleteTodo: (id: number) => void;
+  deleteTodo: (e: FormEvent<HTMLElement>, id: number) => void;
 }
 
 export interface TodoListState {}
