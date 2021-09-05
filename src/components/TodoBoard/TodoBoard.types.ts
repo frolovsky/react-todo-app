@@ -11,7 +11,7 @@ export interface Todos {
 }
 
 export interface TodoItem {
-  id: number;
+  id: number | string;
   title: string;
   completed: boolean;
 }

@@ -30,7 +30,7 @@ export default class TodoBoard extends Component<TodoBoardProps, TodoBoardState>
     });
   }
 
-  toggleCompleteTodoItem(e: FormEvent<HTMLElement>, id: number, value: boolean) {
+  toggleCompleteTodoItem(e: FormEvent<HTMLElement>, id: number | string, value: boolean) {
     const todoIndex = this.state.todos[this.props.date].findIndex(todo => todo.id === id);
     this.setState({
       todos: update(
@@ -55,7 +55,7 @@ export default class TodoBoard extends Component<TodoBoardProps, TodoBoardState>
     });
   }
 
-  deleteTodo(e: FormEvent<HTMLElement>, itemId: number) {
+  deleteTodo(e: FormEvent<HTMLElement>, itemId: number | string) {
     e.stopPropagation();
     const index = this.state.todos[this.props.date].findIndex(todo => todo.id === itemId);
     if (index !== -1) {
